@@ -38,17 +38,21 @@ void AdminLoginWidget::accept()
 
     if (userPassword.isEmpty()) {
         ui->passwordEdit->setFocus();
-        QToolTip::showText(ui->passwordEdit->mapToGlobal(QPoint(ui->passwordEdit->width(), -ui->passwordEdit->height() / 2)),
-                           "<font style='color:red;'>Kata Sandi harus diisi.</font>",
-                           ui->passwordEdit);
+        showError(ui->passwordEdit, "Silahkan masukkan kata sandi!");
     }
     else if (userPassword != storedPassword) {
         ui->passwordEdit->setFocus();
-        QToolTip::showText(ui->passwordEdit->mapToGlobal(QPoint(ui->passwordEdit->width(), -ui->passwordEdit->height() / 2)),
-                           "<font style='color:red;'>Kata Sandi salah.</font>",
-                           ui->passwordEdit);
+        ui->passwordEdit->selectAll();
+        showError(ui->passwordEdit, "Kata sandi yang anda masukkan salah!");
     }
     else {
         emit accepted();
     }
+}
+
+void AdminLoginWidget::showError(QWidget* widget, const QString& message)
+{
+    QToolTip::showText(widget->mapToGlobal(QPoint(widget->width(), -(widget->height() / 2))),
+                       "<font style='color:red;'>" + message + "</font>",
+                       widget);
 }

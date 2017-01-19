@@ -23,6 +23,7 @@ signals:
     void rejected();
 
 private:
+    void showError(QWidget* widget, const QString& message);
     Ui::AdminLoginWidget *ui;
 };
 
