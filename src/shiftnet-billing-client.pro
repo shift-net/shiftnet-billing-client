@@ -5,7 +5,19 @@ QT = core gui widgets
 
 SOURCES += \
     main.cpp \
-    screenlocker.cpp
+    screenlocker.cpp \
+    adminloginwidget.cpp \
+    settingswidget.cpp
 
 HEADERS  += \
-    screenlocker.h
+    screenlocker.h \
+    adminloginwidget.h \
+    settingswidget.h \
+    global.h
+
+RESOURCES += \
+    main.qrc
+
+FORMS += \
+    adminloginwidget.ui \
+    settingswidget.ui

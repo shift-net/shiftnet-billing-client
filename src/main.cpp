@@ -1,5 +1,6 @@
 #include <QApplication>
 #include <QSharedMemory>
+#include <QFile>
 #include <QBuffer>
 #include <QDataStream>
 #include <QDebug>
@@ -44,6 +45,13 @@ int main(int argc, char** argv)
         const char *from = buffer.data().data();
         memcpy(to, from, qMin(appPidSharedMemory.size(), (int)buffer.size()));
         appPidSharedMemory.unlock();
+    }
+
+    // load stylesheet
+    {
+        QFile file(":/main.qss");
+        file.open(QFile::ReadOnly);
+        app.setStyleSheet(QLatin1String(file.readAll()));
     }
 
     ScreenLocker locker;
