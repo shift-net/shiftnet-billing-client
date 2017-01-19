@@ -17,11 +17,13 @@ public:
 
 private slots:
     void accept();
+    void exit();
 
 signals:
     void finished();
 
 private:
+    void showError(QWidget* widget, const QString& message);
     Ui::SettingsWidget *ui;
 };
 
