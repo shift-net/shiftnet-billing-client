@@ -1,3 +1,6 @@
+#include "global.h"
+#include "screenlocker.h"
+
 #include <QApplication>
 #include <QSharedMemory>
 #include <QFile>
@@ -5,12 +8,12 @@
 #include <QDataStream>
 #include <QDebug>
 
-#include "screenlocker.h"
-
 int main(int argc, char** argv)
 {
     QApplication app(argc, argv);
-    app.setApplicationDisplayName("ShiftNet Billing Client");
+    app.setApplicationName(SNBC_APP_NAME);
+    app.setApplicationDisplayName(SNBC_APP_NAME);
+    app.setApplicationVersion(SNBC_APP_VERSION_STR);
 
     // Simple single instance application mechanism with shared memory
     QSharedMemory appPidSharedMemory("shiftnet-billing-client.pid");
