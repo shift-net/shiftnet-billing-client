@@ -25,6 +25,7 @@ SettingsWidget::SettingsWidget(QWidget *parent)
     connect(ui->cancelButton, SIGNAL(clicked()), SIGNAL(finished()));
     connect(ui->ipAddressEdit, SIGNAL(returnPressed()), SLOT(accept()));
     connect(ui->portEdit, SIGNAL(returnPressed()), SLOT(accept()));
+    connect(rejectAction, SIGNAL(triggered(bool)), SIGNAL(finished()));
 
     QTimer::singleShot(0, ui->ipAddressEdit, SLOT(setFocus()));
 }
