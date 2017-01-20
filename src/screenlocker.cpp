@@ -1,6 +1,7 @@
 #include "screenlocker.h"
 #include "adminloginwidget.h"
 #include "settingswidget.h"
+#include "memberloginwidget.h"
 
 #include <QBoxLayout>
 #include <QAction>
@@ -23,6 +24,8 @@ ScreenLocker::ScreenLocker(QWidget *parent)
     adminLoginAction->setShortcut(QKeySequence("Ctrl+Shift+Alt+Z"));
     connect(adminLoginAction, SIGNAL(triggered(bool)), SLOT(showAdminLoginWidget()));
     addAction(adminLoginAction);
+
+    showMemberLoginWidget();
 }
 
 void ScreenLocker::setContentWidget(QWidget* widget)
@@ -49,19 +52,25 @@ void ScreenLocker::showAdminLoginWidget()
 
     AdminLoginWidget* widget = new AdminLoginWidget(this);
     connect(widget, SIGNAL(accepted()), SLOT(showSettingsWidget()));
-    connect(widget, SIGNAL(rejected()), SLOT(exitSettings()));
+    connect(widget, SIGNAL(rejected()), SLOT(showMemberLoginWidget()));
     setContentWidget(widget);
 }
 
 void ScreenLocker::showSettingsWidget()
 {
     SettingsWidget* widget = new SettingsWidget(this);
-    connect(widget, SIGNAL(finished()), SLOT(exitSettings()));
+    connect(widget, SIGNAL(finished()), SLOT(showMemberLoginWidget()));
     setContentWidget(widget);
 }
 
-void ScreenLocker::exitSettings()
+void ScreenLocker::showMemberLoginWidget()
 {
-    setContentWidget(0);
+    if (contentWidget() && contentWidget()->inherits(MemberLoginWidget::staticMetaObject.className())) {
+        return;
+    }
+
+    MemberLoginWidget *widget = new MemberLoginWidget(this);
+    setContentWidget(widget);
+
     adminLoginAction->setEnabled(true);
 }

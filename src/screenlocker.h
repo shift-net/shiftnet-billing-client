@@ -19,7 +19,7 @@ signals:
 public slots:
     void showAdminLoginWidget();
     void showSettingsWidget();
-    void exitSettings();
+    void showMemberLoginWidget();
 
 private:
     QBoxLayout* contentLayout;

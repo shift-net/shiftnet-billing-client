@@ -77,7 +77,7 @@ QPushButton:pressed {
     background: #DADAD9;
 }
 
-AdminLoginWidget, SettingsWidget {
+AdminLoginWidget, SettingsWidget, MemberLoginWidget {
     min-width: 400px;
     max-width: 400px;
 }

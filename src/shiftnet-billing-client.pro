@@ -7,17 +7,20 @@ SOURCES += \
     main.cpp \
     screenlocker.cpp \
     adminloginwidget.cpp \
-    settingswidget.cpp
+    settingswidget.cpp \
+    memberloginwidget.cpp
 
 HEADERS  += \
     screenlocker.h \
     adminloginwidget.h \
     settingswidget.h \
-    global.h
+    global.h \
+    memberloginwidget.h
 
 RESOURCES += \
     main.qrc
 
 FORMS += \
     adminloginwidget.ui \
-    settingswidget.ui
+    settingswidget.ui \
+    memberloginwidget.ui
