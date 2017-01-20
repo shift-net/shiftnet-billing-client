@@ -38,9 +38,40 @@ ScreenLockerContentWidget #footerFrame {
     padding-bottom: 15px;
 }
 
- #contentFrame QLabel {
+#clientIdLabel {
+    font-size: 40px;
+    color: #eee;
+    font-weight: bold;
+    padding-top: 30px;
+}
+
+#companyNameLabel {
+    font-size: 15px;
+    color: #ccc;
+    font-weight: bold;
+}
+
+#companyAddressLabel {
+    font-size: 11px;
+    color: #888;
+}
+
+#disconnectedWarningLabel {
+    color: #f00;
+    font-weight: bold;
+    font-size: 20px;
+    background: #fee;
+    border: 1px solid #f88;
+}
+
+#footerLabel {
+    color: #666;
+    padding-bottom: 30px;
+}
+
+#contentFrame QLabel {
     color: #111;
- }
+}
 
 QLineEdit {
     border: 1px solid #ddd;
@@ -53,6 +84,10 @@ QLineEdit:hover {
 
 QLineEdit:focus {
     border-color: #3079ed;
+}
+
+QLineEdit:disabled {
+    background: #eee;
 }
 
 QPushButton {
@@ -77,7 +112,12 @@ QPushButton:pressed {
     background: #DADAD9;
 }
 
-AdminLoginWidget, SettingsWidget, MemberLoginWidget {
+QPushButton:disabled {
+    background: #DADAD9;
+    color: #888;
+}
+
+AdminLoginWidget, SettingsWidget, LoginWidget {
     min-width: 400px;
     max-width: 400px;
 }

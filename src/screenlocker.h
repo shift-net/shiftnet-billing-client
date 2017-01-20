@@ -4,6 +4,7 @@
 #include <QFrame>
 
 class QBoxLayout;
+class QLabel;
 
 class ScreenLocker : public QWidget
 {
@@ -17,13 +18,25 @@ public:
 signals:
 
 public slots:
+    void standBy();
     void showAdminLoginWidget();
     void showSettingsWidget();
-    void showMemberLoginWidget();
+    void showLoginWidget();
+    void showTopupWidget();
+    void showDisconnectedWarningLabel();
+
+private slots:
+    void updateClientInfo();
+
+protected:
+    void closeEvent(QCloseEvent* event);
 
 private:
     QBoxLayout* contentLayout;
     QAction* adminLoginAction;
+    QLabel* clientIdLabel;
+    QLabel* companyNameLabel;
+    QLabel* companyAddressLabel;
 };
 
 class ScreenLockerContentWidget : public QFrame

@@ -33,21 +33,17 @@ AdminLoginWidget::~AdminLoginWidget()
 void AdminLoginWidget::accept()
 {
     QSettings settings(SNBC_SETTINGS_PATH, QSettings::IniFormat);
-    const QString storedPassword = settings.value(SNBC_SK_ADMIN_PASSWORD, SNBC_DEFAULT_ADMIN_PASSWORD).toString();
+    const QString storedPassword = settings.value(SNBC_SK_CLIENT_PASSWORD, SNBC_DEFAULT_ADMIN_PASSWORD).toString();
     const QString userPassword = ui->passwordEdit->text();
 
-    if (userPassword.isEmpty()) {
-        ui->passwordEdit->setFocus();
-        showError(ui->passwordEdit, "Silahkan masukkan kata sandi!");
-    }
-    else if (userPassword != storedPassword) {
+    if (userPassword != storedPassword) {
         ui->passwordEdit->setFocus();
         ui->passwordEdit->selectAll();
         showError(ui->passwordEdit, "Kata sandi yang anda masukkan salah!");
+        return;
     }
-    else {
-        emit accepted();
-    }
+
+    emit accepted();
 }
 
 void AdminLoginWidget::showError(QWidget* widget, const QString& message)

@@ -1,6 +1,7 @@
 #include "settingswidget.h"
 #include "ui_settingswidget.h"
 #include "global.h"
+#include "connection.h"
 
 #include <QToolTip>
 #include <QTimer>
@@ -79,7 +80,7 @@ void SettingsWidget::accept()
 void SettingsWidget::exit()
 {
     // TODO: Beritahu server bahwa client ditutup
-
+    Connection::instance()->notifyExit();
     qApp->quit();
 }
 

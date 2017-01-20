@@ -1,21 +1,23 @@
 TARGET = shiftnet-billing-client
 TEMPLATE = app
 DESTDIR = $$PWD/../dist
-QT = core gui widgets
+QT = core gui widgets network
 
 SOURCES += \
     main.cpp \
     screenlocker.cpp \
     adminloginwidget.cpp \
     settingswidget.cpp \
-    memberloginwidget.cpp
+    connection.cpp \
+    loginwidget.cpp
 
 HEADERS  += \
     screenlocker.h \
     adminloginwidget.h \
     settingswidget.h \
     global.h \
-    memberloginwidget.h
+    connection.h \
+    loginwidget.h
 
 RESOURCES += \
     main.qrc
@@ -23,4 +25,4 @@ RESOURCES += \
 FORMS += \
     adminloginwidget.ui \
     settingswidget.ui \
-    memberloginwidget.ui
+    loginwidget.ui

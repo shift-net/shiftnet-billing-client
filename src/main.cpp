@@ -1,5 +1,6 @@
 #include "global.h"
 #include "screenlocker.h"
+#include "connection.h"
 
 #include <QApplication>
 #include <QSharedMemory>
@@ -7,6 +8,7 @@
 #include <QBuffer>
 #include <QDataStream>
 #include <QDebug>
+#include <QTimer>
 
 int main(int argc, char** argv)
 {
@@ -57,8 +59,13 @@ int main(int argc, char** argv)
         app.setStyleSheet(QLatin1String(file.readAll()));
     }
 
+    Connection con(&app);
+
     ScreenLocker locker;
     locker.showFullScreen();
+    locker.standBy();
+
+    QTimer::singleShot(0, &con, SLOT(connectToServer()));
 
     return app.exec();
 }

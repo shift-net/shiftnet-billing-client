@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MemberLoginWidget</class>
- <widget class="QWidget" name="MemberLoginWidget">
+ <class>LoginWidget</class>
+ <widget class="QWidget" name="LoginWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -138,7 +138,7 @@
          <number>40</number>
         </property>
         <property name="echoMode">
-         <enum>QLineEdit::Normal</enum>
+         <enum>QLineEdit::Password</enum>
         </property>
        </widget>
       </item>
