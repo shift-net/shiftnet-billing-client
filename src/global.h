@@ -14,6 +14,10 @@
 #define SNBC_SK_SERVER_ADDRESS  "Server/address"
 #define SNBC_SK_SERVER_PORT     "Server/port"
 
-#define SNBC_SK_ADMIN_PASSWORD "General/admin-password"
+#define SNBC_SK_CLIENT_ID        "Client/id"
+#define SNBC_SK_CLIENT_PASSWORD  "Client/password"
+
+#define SNBC_SK_COMPANY_NAME      "Company/name"
+#define SNBC_SK_COMPANY_ADDRESS   "Company/address"
 
 #endif // GLOBAL_H
