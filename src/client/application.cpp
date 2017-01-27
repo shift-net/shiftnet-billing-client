@@ -5,17 +5,11 @@
 #include "billingdialog.h"
 #include "maintenancedialog.h"
 
-#include <QWebSocket>
 #include <QTimer>
-#include <QSettings>
-#include <QDebug>
-#include <QDateTime>
-#include <QProcess>
 #include <windows.h>
 
 bool exit_window(int type)
 {
-    qDebug() << "Sending shutdown command...";
     HANDLE hToken;
     TOKEN_PRIVILEGES tkp;
 
@@ -59,17 +53,32 @@ Application::Application(const QString& settingsPath, int argc, char** argv)
 
 void Application::sendInit()
 {
-    connection()->send("init");
+    if (connection()->isConnected())
+        connection()->send("init");
 }
 
 void Application::sendGuestLogin(const QString& code)
 {
-    connection()->send("guest-login", code);
+    if (connection()->isConnected())
+        connection()->send("guest-login", code);
 }
 
 void Application::sendMemberLogin(const QString& username, const QString& password, const QString& code)
 {
-    connection()->send("member-login", QVariantList({ username, password, code }));
+    if (connection()->isConnected())
+        connection()->send("member-login", QVariantList({ username, password, code }));
+}
+
+void Application::sendSessionStop()
+{
+    if (connection()->isConnected())
+        connection()->send("session-stop");
+}
+
+void Application::sendTopup(const QString& code)
+{
+    if (connection()->isConnected())
+        connection()->send("user-topup", code);
 }
 
 void Application::processMessage(const QString& type, const QVariant& message)
@@ -132,18 +141,6 @@ void Application::processMessage(const QString& type, const QVariant& message)
     else if (type == "user-topup-failed") {
         emit topupFailed(message.toString());
     }
-}
-
-void Application::sendSessionStop()
-{
-    if (connection()->isConnected())
-        connection()->send("session-stop");
-}
-
-void Application::sendTopup(const QString& code)
-{
-    if (connection()->isConnected())
-        connection()->send("user-topup", code);
 }
 
 void Application::lockScreen()

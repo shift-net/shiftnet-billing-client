@@ -6,9 +6,7 @@
 
 #include <QCloseEvent>
 #include <QMessageBox>
-#include <QTimer>
 #include <QDesktopWidget>
-#include <QDebug>
 
 MaintenanceDialog::MaintenanceDialog(QWidget *parent)
     : QDialog(parent, Qt::CustomizeWindowHint | Qt::FramelessWindowHint | Qt::WindowStaysOnBottomHint)

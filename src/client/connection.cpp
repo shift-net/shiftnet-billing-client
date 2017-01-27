@@ -7,7 +7,6 @@
 #include <QJsonParseError>
 #include <QJsonDocument>
 #include <QJsonArray>
-#include <QDebug>
 
 Connection::Connection(QObject* parent)
     : QObject(parent)
@@ -50,10 +49,6 @@ bool Connection::isConnected() const
 
 void Connection::send(const QString& msgType, const QVariant& data)
 {
-    qDebug() << "sending message" << msgType << data;
-    QVariantList list;
-    list << "client" << msgType << data;
-    socket->sendTextMessage(QJsonDocument::fromVariant(list).toJson(QJsonDocument::Compact));
     socket->flush();
 }
 
@@ -74,6 +69,5 @@ void Connection::processTextMessage(const QString& jsonString)
     QVariantList list = doc.array().toVariantList();
     if (list.size() != 2) return;
 
-    qDebug() << "message received" << list.at(0).toString() << list.at(1);
     emit received(list.at(0).toString(), list.at(1));
 }

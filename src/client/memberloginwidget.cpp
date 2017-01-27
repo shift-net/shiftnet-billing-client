@@ -3,13 +3,8 @@
 #include "global.h"
 #include "application.h"
 
-#include <QJSonObject>
-#include <QToolTip>
 #include <QTimer>
 #include <QAction>
-#include <QSettings>
-#include <QApplication>
-#include <QTimer>
 
 MemberLoginWidget::MemberLoginWidget(QWidget *parent)
     : ScreenLockerContentWidget(parent)

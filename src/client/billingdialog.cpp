@@ -8,7 +8,6 @@
 #include <QMessageBox>
 #include <QTimer>
 #include <QDesktopWidget>
-#include <QDebug>
 
 BillingDialog::BillingDialog(QWidget *parent)
     : QDialog(parent, Qt::CustomizeWindowHint | Qt::FramelessWindowHint | Qt::WindowStaysOnBottomHint)

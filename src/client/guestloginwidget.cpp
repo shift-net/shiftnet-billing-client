@@ -4,13 +4,8 @@
 #include "application.h"
 
 #include <QDateTime>
-#include <QJSonObject>
-#include <QToolTip>
 #include <QTimer>
 #include <QAction>
-#include <QSettings>
-#include <QApplication>
-#include <QTimer>
 
 GuestLoginWidget::GuestLoginWidget(QWidget *parent)
     : ScreenLockerContentWidget(parent)

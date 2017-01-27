@@ -6,14 +6,11 @@
 
 class QWebSocket;
 class QTimer;
-class Application;
 
 class Connection : public QObject
 {
     Q_OBJECT
 public:
-    friend class Application;
-
     Connection(QObject* parent = 0);
 
     bool isConnected() const;

@@ -3,7 +3,6 @@
 #include "adminloginwidget.h"
 #include "application.h"
 
-#include <QToolTip>
 #include <QTimer>
 #include <QAction>
 #include <QCryptographicHash>
@@ -35,7 +34,7 @@ AdminLoginWidget::~AdminLoginWidget()
 
 void AdminLoginWidget::accept()
 {
-    const QString storedPassword = qApp->settings(SNBC_SK_CLIENT_PASSWORD, SNBC_DEFAULT_ADMIN_PASSWORD).toByteArray();
+    const QByteArray storedPassword = qApp->settings(SNBC_SK_CLIENT_PASSWORD, SNBC_DEFAULT_ADMIN_PASSWORD).toByteArray();
     const QByteArray userPassword = QCryptographicHash::hash(ui->passwordEdit->text().toUtf8(), QCryptographicHash::Sha1).toHex();
 
     if (userPassword != storedPassword) {

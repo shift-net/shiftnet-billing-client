@@ -3,13 +3,10 @@
 #include "global.h"
 #include "application.h"
 
-#include <QToolTip>
 #include <QTimer>
 #include <QAction>
-#include <QSettings>
 #include <QRegExpValidator>
 #include <QIntValidator>
-#include <QApplication>
 
 SettingsWidget::SettingsWidget(QWidget *parent)
     : ScreenLockerContentWidget(parent)
@@ -21,11 +18,9 @@ SettingsWidget::SettingsWidget(QWidget *parent)
     rejectAction->setShortcut(QKeySequence("Esc"));
     addAction(rejectAction);
 
-
     ui->ipAddressEdit->setValidator(new QRegExpValidator(QRegExp("^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}"
                                                                  "(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"), this));
     ui->portEdit->setValidator(new QIntValidator(0, 65535, this));
-
 
     ui->ipAddressEdit->setText(qApp->settings(SNBC_SK_SERVER_ADDRESS, SNBC_DEFAULT_SERVER_ADDRESS).toString());
     ui->portEdit->setText(QString::number(qApp->settings(SNBC_SK_SERVER_PORT, SNBC_DEFAULT_SERVER_PORT).toInt()));
