@@ -1,0 +1,216 @@
+#include "application.h"
+#include "global.h"
+#include "connection.h"
+#include "screenlocker.h"
+#include "billingdialog.h"
+#include "maintenancedialog.h"
+
+#include <QWebSocket>
+#include <QTimer>
+#include <QSettings>
+#include <QDebug>
+#include <QDateTime>
+#include <QProcess>
+#include <windows.h>
+
+bool exit_window(int type)
+{
+    qDebug() << "Sending shutdown command...";
+    HANDLE hToken;
+    TOKEN_PRIVILEGES tkp;
+
+   // Get a token for this process.
+   if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
+      return false;
+
+   // Get the LUID for the shutdown privilege.
+   LookupPrivilegeValue(NULL, SE_SHUTDOWN_NAME, &tkp.Privileges[0].Luid);
+
+   tkp.PrivilegeCount = 1;  // one privilege to set
+   tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+
+   // Get the shutdown privilege for this process.
+   AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES)NULL, 0);
+
+   if (GetLastError() != ERROR_SUCCESS)
+      return false;
+
+   // Shut down the system and force all applications to close.
+   if (!ExitWindowsEx(type | EWX_FORCE, SHTDN_REASON_MAJOR_OPERATINGSYSTEM | SHTDN_REASON_MINOR_UPGRADE | SHTDN_REASON_FLAG_PLANNED))
+      return false;
+
+   return true;
+}
+
+
+Application::Application(const QString& settingsPath, int argc, char** argv)
+    : QApplication(argc, argv)
+    , _settings(settingsPath, QSettings::IniFormat)
+    , _connection(new Connection)
+    , _screenLocker(0)
+    , _windowTopMostTimer(new QTimer(this))
+{
+    connect(connection(), SIGNAL(connected()), SLOT(sendInit()));
+    connect(connection(), SIGNAL(received(QString,QVariant)), SLOT(processMessage(QString,QVariant)));
+    connect(connection(), SIGNAL(connected()), SIGNAL(connected()));
+    connect(connection(), SIGNAL(disconnected()), SIGNAL(disconnected()));
+    connect(_windowTopMostTimer, SIGNAL(timeout()), SLOT(setScreenLockerOnTop()));
+}
+
+void Application::sendInit()
+{
+    connection()->send("init");
+}
+
+void Application::sendGuestLogin(const QString& code)
+{
+    connection()->send("guest-login", code);
+}
+
+void Application::sendMemberLogin(const QString& username, const QString& password, const QString& code)
+{
+    connection()->send("member-login", QVariantList({ username, password, code }));
+}
+
+void Application::processMessage(const QString& type, const QVariant& message)
+{
+    if (type == "init") {
+        const QVariantMap data = message.toMap();
+        const QVariantMap company = data.value("company").toMap();
+        const QVariantMap client = data.value("client").toMap();
+
+        // update settings
+        setSettings(SNBC_SK_COMPANY_NAME, company.value("name"));
+        setSettings(SNBC_SK_COMPANY_ADDRESS, company.value("address"));
+        setSettings(SNBC_SK_CLIENT_ID, client.value("id"));
+        setSettings(SNBC_SK_CLIENT_PASSWORD, client.value("password"));
+
+        emit initialized();
+    }
+
+    // Login
+    else if (type == "guest-login-failed") {
+        emit guestLoginFailed(message.toString());
+    }
+    else if (type == "member-login-failed") {
+        QStringList d = message.toStringList();
+        emit memberLoginFailed(d.first(), d.last());
+    }
+
+    // Session
+    else if (type == "session-start") {
+        emit sessionStarted();
+        QVariantMap m = message.toMap();
+        setProperty("username", m.value("username"));
+        setProperty("duration", m.value("duration"));
+        showBillingDialog();
+    }
+    else if (type == "session-sync") {
+        setProperty("duration", message);
+        emit durationUpdated();
+    }
+    else if (type == "session-stop") {
+        emit sessionStopped();
+    }
+    else if (type == "session-timeout") {
+        emit sessionTimeout();
+    }
+
+    // system remote
+    else if (type == "system-shutdown") {
+        shutdownSystem();
+    }
+    else if (type == "system-restart") {
+        restartSystem();
+    }
+
+    // topup
+    else if (type == "user-topup-success") {
+        int duration = message.toInt();
+        emit topupSuccess(duration);
+    }
+    else if (type == "user-topup-failed") {
+        emit topupFailed(message.toString());
+    }
+}
+
+void Application::sendSessionStop()
+{
+    if (connection()->isConnected())
+        connection()->send("session-stop");
+}
+
+void Application::sendTopup(const QString& code)
+{
+    if (connection()->isConnected())
+        connection()->send("user-topup", code);
+}
+
+void Application::lockScreen()
+{
+    _windowTopMostTimer->start(500);
+    _screenLocker->showFullScreen();
+    _screenLocker->standBy();
+}
+
+void Application::showBillingDialog()
+{
+    _windowTopMostTimer->stop();
+    _screenLocker->hide();
+    _screenLocker->setContentWidget(0);
+
+    BillingDialog dialog;
+    dialog.exec();
+
+    lockScreen();
+}
+
+int Application::exec()
+{
+    connection()->connect();
+    _screenLocker =  new ScreenLocker;
+    lockScreen();
+
+    return QApplication::exec();
+}
+
+void Application::maintenance()
+{
+    _windowTopMostTimer->stop();
+    _screenLocker->hide();
+
+    if (connection()->isConnected())
+        connection()->send("maintenance-start");
+
+    MaintenanceDialog dialog;
+    dialog.exec();
+
+    if (connection()->isConnected())
+        connection()->send("maintenance-stop");
+
+    _windowTopMostTimer->start(500);
+    _screenLocker->standBy();
+    _screenLocker->show();
+}
+
+bool Application::isConnected() const
+{
+    return connection()->isConnected();
+}
+
+void Application::shutdownSystem()
+{
+    exit_window(EWX_SHUTDOWN);
+}
+
+void Application::restartSystem()
+{
+    exit_window(EWX_REBOOT);
+}
+
+void Application::setScreenLockerOnTop()
+{
+    if (_screenLocker && _screenLocker->isVisible()) {
+        SetWindowPos((HWND)_screenLocker->winId(), HWND_TOPMOST, 0, 0, 0, 0, SWP_DRAWFRAME | SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+    }
+}
