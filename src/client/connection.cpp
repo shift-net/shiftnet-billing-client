@@ -49,6 +49,7 @@ bool Connection::isConnected() const
 
 void Connection::send(const QString& msgType, const QVariant& data)
 {
+    socket->sendTextMessage(QJsonDocument::fromVariant(QVariantList({ "client", msgType, data})).toJson(QJsonDocument::Compact));
     socket->flush();
 }
 
