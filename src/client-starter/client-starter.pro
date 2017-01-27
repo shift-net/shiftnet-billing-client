@@ -1,7 +1,6 @@
+TEMPLATE = app
+QT       = core network
 TARGET   = svchost
 DESTDIR  = $$PWD/../../dist
-TEMPLATE = app
-QT = core network 
-RC_FILE = shift.rc
-SOURCES  = \ 
-    main.cpp
+RC_FILE  = client-starter.rc
+SOURCES  = main.cpp

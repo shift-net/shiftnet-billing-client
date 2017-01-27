@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>324</width>
-    <height>122</height>
+    <width>218</width>
+    <height>68</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -160,7 +160,7 @@
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <property name="spacing">
-          <number>10</number>
+          <number>0</number>
          </property>
          <property name="leftMargin">
           <number>0</number>
@@ -175,11 +175,41 @@
           <number>0</number>
          </property>
          <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>69</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QPushButton" name="okButton">
            <property name="text">
             <string>&amp;Selesai</string>
            </property>
+           <property name="icon">
+            <iconset resource="main.qrc">
+             <normaloff>:/fa-sign-out-white.png</normaloff>:/fa-sign-out-white.png</iconset>
+           </property>
           </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>68</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </widget>
@@ -189,6 +219,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="main.qrc"/>
+ </resources>
  <connections/>
 </ui>

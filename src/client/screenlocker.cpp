@@ -54,8 +54,10 @@ ScreenLocker::ScreenLocker(QWidget *parent)
 
     QPushButton* shutdownButton = new QPushButton("&Shutdown", this);
     shutdownButton->setObjectName("shutdownButton");
+    shutdownButton->setIcon(QIcon(":/fa-shut-down-black.png"));
     QPushButton* restartButton = new QPushButton("&Restart", this);
     restartButton->setObjectName("restartButton");
+    restartButton->setIcon(QIcon(":/fa-restart-black.png"));
 
     QHBoxLayout* buttonsLayout = new QHBoxLayout;
     buttonsLayout->setMargin(0);

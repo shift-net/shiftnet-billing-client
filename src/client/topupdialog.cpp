@@ -80,6 +80,7 @@ void TopupDialog::onTopupSuccess(int duration)
 
     QMessageBox msgBox;
     msgBox.setWindowTitle("Informasi");
+    msgBox.setIconPixmap(QIcon(":/fa-info-black.png").pixmap(QSize(32, 32)));
     msgBox.setText(QString("Topup voucher berhasil. Waktu voucher %1:%1 telah ditambahkan.").arg(durationString));
     msgBox.addButton(QMessageBox::Ok);
     QTimer::singleShot(5000, &msgBox, SLOT(accept()));

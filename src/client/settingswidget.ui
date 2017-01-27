@@ -168,6 +168,10 @@
         <property name="text">
          <string>&amp;Simpan</string>
         </property>
+        <property name="icon">
+         <iconset resource="main.qrc">
+          <normaloff>:/fa-check-white.png</normaloff>:/fa-check-white.png</iconset>
+        </property>
        </widget>
       </item>
       <item>
@@ -175,12 +179,20 @@
         <property name="text">
          <string>&amp;Batal</string>
         </property>
+        <property name="icon">
+         <iconset resource="main.qrc">
+          <normaloff>:/fa-close-black.png</normaloff>:/fa-close-black.png</iconset>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="exitButton">
         <property name="text">
          <string>&amp;Pemeliharaan</string>
+        </property>
+        <property name="icon">
+         <iconset resource="main.qrc">
+          <normaloff>:/fa-wrench-black.png</normaloff>:/fa-wrench-black.png</iconset>
         </property>
        </widget>
       </item>
@@ -196,6 +208,8 @@
   <tabstop>cancelButton</tabstop>
   <tabstop>exitButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="main.qrc"/>
+ </resources>
  <connections/>
 </ui>

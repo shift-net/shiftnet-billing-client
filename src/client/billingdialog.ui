@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>324</width>
-    <height>122</height>
+    <width>180</width>
+    <height>68</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -175,9 +175,26 @@
           <number>0</number>
          </property>
          <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QPushButton" name="okButton">
            <property name="text">
             <string>&amp;Topup</string>
+           </property>
+           <property name="icon">
+            <iconset resource="main.qrc">
+             <normaloff>:/fa-topup-white.png</normaloff>:/fa-topup-white.png</iconset>
            </property>
           </widget>
          </item>
@@ -186,7 +203,24 @@
            <property name="text">
             <string>&amp;Keluar</string>
            </property>
+           <property name="icon">
+            <iconset resource="main.qrc">
+             <normaloff>:/fa-sign-out-black.png</normaloff>:/fa-sign-out-black.png</iconset>
+           </property>
           </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </widget>
@@ -196,6 +230,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="main.qrc"/>
+ </resources>
  <connections/>
 </ui>

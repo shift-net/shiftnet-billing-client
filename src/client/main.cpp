@@ -14,8 +14,8 @@ int main(int argc, char** argv)
 {
     Application app(SNBC_SETTINGS_PATH, argc, argv);
     app.setApplicationName(SNBC_APP_NAME);
-    app.setApplicationDisplayName(SNBC_APP_NAME);
-    app.setApplicationVersion(SNBC_APP_VERSION_STR);
+    app.setApplicationDisplayName(SNBC_APP_DISPLAY_NAME);
+    app.setApplicationVersion(SNBC_VERSION_STR);
 
     // Simple single instance application mechanism with shared memory
     QSharedMemory appPidSharedMemory("shiftnet-billing-client.pid");

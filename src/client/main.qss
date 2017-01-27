@@ -49,7 +49,7 @@ ScreenLockerContentWidget #footerFrame {
 
 #companyNameLabel {
     font-size: 15px;
-    color: #4d90fe;
+    color: #ccc;
     font-weight: bold;
 }
 
@@ -126,10 +126,15 @@ SettingsWidget QPushButton {
     padding-right: 10px;
 }
 
-MemberLoginWidget, SettingsWidget,
-GuestLoginWidget, AdminLoginWidget {
+MemberLoginWidget, AdminLoginWidget,
+GuestLoginWidget {
     min-width: 300px;
     max-width: 300px;
+}
+
+SettingsWidget {
+    min-width: 375px;
+    max-width: 375px;
 }
 
 #titleLabel {

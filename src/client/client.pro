@@ -2,7 +2,7 @@ TARGET = ShiftNetBillingClient
 TEMPLATE = app
 DESTDIR = $$PWD/../../dist
 QT = core gui widgets websockets
-RC_FILE = shift.rc
+RC_FILE = client.rc
 
 SOURCES += \
     main.cpp \
@@ -41,3 +41,5 @@ FORMS += \
     billingdialog.ui \
     topupdialog.ui \
     maintenancedialog.ui
+
+DISTFILES +=

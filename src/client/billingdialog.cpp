@@ -63,9 +63,11 @@ void BillingDialog::confirmExit()
     QMessageBox msgBox;
     msgBox.setWindowTitle("Konfirmasi");
     msgBox.setText("Anda yakin sudah selesai bermain?");
-    msgBox.setIcon(QMessageBox::Question);
-    msgBox.addButton("&Tidak", QMessageBox::RejectRole);
-    msgBox.addButton("&Ya", QMessageBox::AcceptRole);
+    msgBox.setIconPixmap(QIcon(":/fa-question-black.png").pixmap(QSize(32, 32)));
+    QPushButton* btn = msgBox.addButton("&Tidak", QMessageBox::RejectRole);
+    btn->setIcon(QIcon(":/fa-close-black.png"));
+    btn = msgBox.addButton("&Ya", QMessageBox::AcceptRole);
+    btn->setIcon(QIcon(":/fa-check-black.png"));
 
     connect(qApp, SIGNAL(sessionTimeout()), &msgBox, SLOT(reject()));
     connect(qApp, SIGNAL(disconnected()), &msgBox, SLOT(reject()));
@@ -87,6 +89,7 @@ void BillingDialog::showTopupDialog()
 void BillingDialog::onTimeout()
 {
     setEnabled(true);
+    // TODO: Message box harus pake timer
     QMessageBox::critical(0, "Kesalahan", "Gagal menutup sesi karena batas waktu permintaan ke server telah habis.");
 }
 

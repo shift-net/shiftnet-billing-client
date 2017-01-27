@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>160</width>
-    <height>74</height>
+    <height>57</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -50,8 +50,23 @@
       <item>
        <widget class="QFrame" name="headerFrame">
         <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
-          <widget class="QLabel" name="titleLbel">
+          <widget class="QLabel" name="titleLabel">
            <property name="text">
             <string>Topup Voucher Shiftnet</string>
            </property>
@@ -124,12 +139,20 @@
            <property name="text">
             <string>&amp;Topup</string>
            </property>
+           <property name="icon">
+            <iconset resource="main.qrc">
+             <normaloff>:/fa-topup-white.png</normaloff>:/fa-topup-white.png</iconset>
+           </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="cancelButton">
            <property name="text">
             <string>&amp;Batal</string>
+           </property>
+           <property name="icon">
+            <iconset resource="main.qrc">
+             <normaloff>:/fa-close-black.png</normaloff>:/fa-close-black.png</iconset>
            </property>
           </widget>
          </item>
@@ -141,6 +164,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="main.qrc"/>
+ </resources>
  <connections/>
 </ui>

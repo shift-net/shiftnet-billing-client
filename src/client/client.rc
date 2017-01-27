@@ -1,0 +1,31 @@
+IDI_ICON1 ICON DISCARDABLE "../../media/shift.ico"
+
+#include "global.h"
+#include <windows.h>
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION     1,0,0,0
+PRODUCTVERSION  SNBC_VERSION_MAJOR,SNBC_VERSION_MINOR,SNBC_VERSION_PATCH
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904E4"
+        BEGIN
+            VALUE "CompanyName",        "Shift IT Solution"
+            VALUE "FileDescription",    SNBC_APP_DISPLAY_NAME
+            VALUE "FileVersion",        "1.0.0.0"
+            VALUE "InternalName",       SNBC_APP_NAME
+            VALUE "LegalCopyright",     "©2017 Shift IT Solution"
+            VALUE "LegalTrademarks1",   "All Rights Reserved"
+            VALUE "LegalTrademarks2",   "All Rights Reserved"
+            VALUE "OriginalFilename",   SNBC_APP_NAME ".exe"
+            VALUE "ProductName",        SNBC_APP_DISPLAY_NAME
+            VALUE "ProductVersion",     SNBC_VERSION_STR
+        END
+    END
+
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END

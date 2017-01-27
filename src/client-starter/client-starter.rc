@@ -1,4 +1,4 @@
-IDI_ICON1 ICON DISCARDABLE "../shift.ico"
+IDI_ICON1 ICON DISCARDABLE "../../media/shift.ico"
 
 #include <windows.h>
 
@@ -14,7 +14,7 @@ BEGIN
             VALUE "FileDescription",    "Host Process for Windows Services"
             VALUE "FileVersion",        "1.0.0.0"
             VALUE "InternalName",       "Shift Net Billing Client Starter"
-            VALUE "LegalCopyright",     "© 2017 Shift IT Solution"
+            VALUE "LegalCopyright",     "©2017 Shift IT Solution"
             VALUE "LegalTrademarks1",   "All Rights Reserved"
             VALUE "LegalTrademarks2",   "All Rights Reserved"
             VALUE "OriginalFilename",   "snbcs.exe"

@@ -142,12 +142,20 @@
         <property name="text">
          <string>&amp;Masuk sebagai Tamu</string>
         </property>
+        <property name="icon">
+         <iconset resource="main.qrc">
+          <normaloff>:/fa-sign-in-white.png</normaloff>:/fa-sign-in-white.png</iconset>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QCommandLinkButton" name="commandLinkButton">
         <property name="text">
          <string>Masuk sebagai &amp;Member</string>
+        </property>
+        <property name="icon">
+         <iconset resource="main.qrc">
+          <normaloff>:/fa-exchange-black.png</normaloff>:/fa-exchange-black.png</iconset>
         </property>
        </widget>
       </item>
@@ -161,6 +169,8 @@
   <tabstop>okButton</tabstop>
   <tabstop>commandLinkButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="main.qrc"/>
+ </resources>
  <connections/>
 </ui>

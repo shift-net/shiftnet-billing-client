@@ -1,6 +1,19 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qss</file>
-        <file>shift.ico</file>
+        <file alias="shift.ico">../../media/shift.ico</file>
+        <file alias="fa-check-white.png">../../media/fa-check-white.png</file>
+        <file alias="fa-close-black.png">../../media/fa-close-black.png</file>
+        <file alias="fa-sign-in-white.png">../../media/fa-sign-in-white.png</file>
+        <file alias="fa-wrench-black.png">../../media/fa-wrench-black.png</file>
+        <file alias="fa-sign-out-white.png">../../media/fa-sign-out-white.png</file>
+        <file alias="fa-exchange-black.png">../../media/fa-exchange-black.png</file>
+        <file alias="fa-info-black.png">../../media/fa-info-black.png</file>
+        <file alias="fa-question-black.png">../../media/fa-question-black.png</file>
+        <file alias="fa-topup-white.png">../../media/fa-topup-white.png</file>
+        <file alias="fa-restart-black.png">../../media/fa-restart-black.png</file>
+        <file alias="fa-shut-down-black.png">../../media/fa-shut-down-black.png</file>
+        <file alias="fa-sign-out-black.png">../../media/fa-sign-out-black.png</file>
+        <file alias="fa-check-black.png">../../media/fa-check-black.png</file>
     </qresource>
 </RCC>
