@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qss</file>
+        <file>shift.ico</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,236 @@
+* {
+    font-size: 13px;
+    color: #333;
+}
+
+QFrame { border: 0; }
+
+ScreenLocker {
+    background: #000;
+}
+
+ScreenLockerContentWidget {
+    background: #f7f7f7;
+    border: 1px solid #c6c6c6;
+    border-radius: 4px;
+}
+
+ScreenLockerContentWidget > QFrame {
+    margin: 0;
+    padding: 0 30px;
+}
+
+ScreenLockerContentWidget #headerFrame {
+    background: #f6f6f6;
+    border-bottom: 1px solid #ddd;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+ScreenLockerContentWidget #contentFrame {
+    background: #fff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+ScreenLockerContentWidget #footerFrame {
+    border-top: 1px solid #ddd;
+    background: #f6f6f6;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#clientIdLabel {
+    font-size: 40px;
+    color: #4d90fe;
+    font-weight: bold;
+    padding-top: 30px;
+}
+
+#companyNameLabel {
+    font-size: 15px;
+    color: #4d90fe;
+    font-weight: bold;
+}
+
+#companyAddressLabel {
+    font-size: 12px;
+    color: #ccc;
+}
+
+#disconnectedWarningLabel {
+    color: #f00;
+    font-weight: bold;
+    font-size: 20px;
+    background: #fee;
+    border: 1px solid #f88;
+}
+
+#footerLabel {
+    color: #333;
+    padding-bottom: 30px;
+}
+
+#contentFrame QLabel {
+    color: #111;
+}
+
+QLineEdit {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+QLineEdit:hover {
+    border-color: #aaa;
+}
+
+QLineEdit:focus {
+    border-color: #3079ed;
+}
+
+QLineEdit:disabled {
+    background: #eee;
+}
+
+QPushButton {
+    color: #555;
+    border: 1px solid #C6C6C6;
+    background: #F8F8F7;
+    padding: 6px 24px;
+    outline: none;
+    font-weight: bold;
+    font-size: 12px;
+    border-radius: 2px;
+}
+
+QPushButton:hover {
+    border-color: #aaa;
+}
+
+QPushButton:focus {
+    border-color: #3079ed;
+    background: #FAFAF9;
+}
+
+QPushButton:pressed {
+    background: #DADAD9;
+}
+
+QPushButton:disabled {
+    background: #DADAD9;
+    color: #888;
+}
+
+SettingsWidget QPushButton {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+MemberLoginWidget, SettingsWidget,
+GuestLoginWidget, AdminLoginWidget {
+    min-width: 300px;
+    max-width: 300px;
+}
+
+#titleLabel {
+    font-size: 16px;
+    color: #555;
+}
+
+#okButton {
+    background: #4d90fe;
+    border-color: #3079ed;
+    color: #fff;
+}
+
+#okButton:hover {
+    background: #5ea0fe;
+    border-color: #4089fd;
+}
+
+#okButton:focus {
+    background: #6eb0fe;
+    border-color: #5099fd;
+}
+
+#okButton:pressed {
+    background: #2e80de;
+}
+
+QToolTip {
+    border: 1px solid #ddd;
+    border-radius: 0px;
+    background: #fff;
+}
+
+/* Billing Dialog & MaintenanceDialog*/
+BillingDialog #companyLabel,
+BillingDialog #clientIdLabel,
+MaintenanceDialog #companyLabel,
+MaintenanceDialog #clientIdLabel
+{
+    margin: 0;
+    padding: 0;
+    color: #555;
+    font-size: 20px;
+}
+
+MaintenanceDialog #companyLabel,
+BillingDialog #companyLabel {
+    font-size: 17px;
+}
+
+MaintenanceDialog #usernameLabel,
+BillingDialog #usernameLabel {
+    color: #333;
+    font-size: 17px;
+}
+
+MaintenanceDialog #maintenanceLabel,
+BillingDialog #durationLabel {
+    font-size: 30px;
+    color: #0d88ce;
+}
+
+MaintenanceDialog #wrapperFrame,
+BillingDialog #wrapperFrame,
+TopupDialog #wrapperFrame
+{
+    margin: 0;
+    padding: 0;
+    background: #eee;
+    border-radius: 4px;
+    border: 1px solid #888;
+}
+
+MaintenanceDialog #headerFrame,
+MaintenanceDialog #contentFrame,
+MaintenanceDialog #footerFrame,
+BillingDialog #headerFrame,
+BillingDialog #contentFrame,
+BillingDialog #footerFrame,
+TopupDialog #headerFrame,
+TopupDialog #contentFrame,
+TopupDialog #footerFrame
+{
+    margin:0;
+    padding: 15px 25px;
+}
+
+MaintenanceDialog #contentFrame,
+BillingDialog #contentFrame,
+TopupDialog #contentFrame {
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    background: #fefefe;
+}
+
+QMessageBox QPushButton {
+    min-width: 40px;
+}
+
+#shutdownButton, #restartButton {
+    font-size: 10px;
+    padding: 3px 7px;
+    min-width: 60px;
+}
