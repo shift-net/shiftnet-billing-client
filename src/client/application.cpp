@@ -54,7 +54,7 @@ Application::Application(const QString& settingsPath, int argc, char** argv)
 void Application::sendInit()
 {
     if (connection()->isConnected())
-        connection()->send("init");
+        connection()->send("init", _screenLocker && _screenLocker->isVisible() ? "ready" : "maintenance");
 }
 
 void Application::sendGuestLogin(const QString& code)
@@ -164,9 +164,10 @@ void Application::showBillingDialog()
 
 int Application::exec()
 {
-    connection()->connect();
     _screenLocker =  new ScreenLocker;
     lockScreen();
+
+    connection()->connect();
 
     return QApplication::exec();
 }
