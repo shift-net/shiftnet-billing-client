@@ -4,7 +4,7 @@
 #include "global.h"
 #include "topupdialog.h"
 
-#include <QCloseEvent>
+#include <qevent.h>
 #include <QMessageBox>
 #include <QDesktopWidget>
 
@@ -17,6 +17,7 @@ MaintenanceDialog::MaintenanceDialog(QWidget *parent)
 
     ui->setupUi(this);
 
+    connect(qApp, SIGNAL(maintenanceStoppedRemotely()), SLOT(reject()));
     ui->companyLabel->setText(qApp->settings(SNBC_SK_COMPANY_NAME).toString());
     ui->clientIdLabel->setText(QString::number(qApp->settings(SNBC_SK_CLIENT_ID).toInt()));
     ui->usernameLabel->setText("Administrator");
@@ -34,6 +35,11 @@ MaintenanceDialog::~MaintenanceDialog()
 }
 
 void MaintenanceDialog::closeEvent(QCloseEvent* event)
+{
+    event->ignore();
+}
+
+void MaintenanceDialog::keyPressEvent(QKeyEvent* event)
 {
     event->ignore();
 }

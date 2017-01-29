@@ -18,6 +18,7 @@ public:
     ~MaintenanceDialog();
 
 protected:
+    void keyPressEvent(QKeyEvent* event);
     void closeEvent(QCloseEvent* event);
 
 private:

@@ -4,7 +4,7 @@
 #include "global.h"
 #include "topupdialog.h"
 
-#include <QCloseEvent>
+#include <qevent.h>
 #include <QMessageBox>
 #include <QTimer>
 #include <QDesktopWidget>
@@ -99,6 +99,11 @@ void BillingDialog::onSessionStopped()
 }
 
 void BillingDialog::closeEvent(QCloseEvent* event)
+{
+    event->ignore();
+}
+
+void BillingDialog::keyPressEvent(QKeyEvent *event)
 {
     event->ignore();
 }

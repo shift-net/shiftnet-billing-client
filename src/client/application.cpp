@@ -132,6 +132,9 @@ void Application::processMessage(const QString& type, const QVariant& message)
     else if (type == "system-restart") {
         restartSystem();
     }
+    else if (type == "maintenance-remote-stop") {
+        maintenanceStoppedRemotely();
+    }
 
     // topup
     else if (type == "user-topup-success") {
@@ -181,10 +184,10 @@ void Application::maintenance()
         connection()->send("maintenance-start");
 
     MaintenanceDialog dialog;
-    dialog.exec();
-
-    if (connection()->isConnected())
-        connection()->send("maintenance-stop");
+    if (dialog.exec()) {
+        if (connection()->isConnected())
+            connection()->send("maintenance-stop");
+    }
 
     _windowTopMostTimer->start(500);
     _screenLocker->standBy();

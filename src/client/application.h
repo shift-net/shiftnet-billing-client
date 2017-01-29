@@ -52,6 +52,8 @@ signals:
     void topupFailed(const QString& msg);
     void topupSuccess(int duration);
 
+    void maintenanceStoppedRemotely();
+
 private slots:
     void sendInit();
     void lockScreen();
