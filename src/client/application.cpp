@@ -138,8 +138,7 @@ void Application::processMessage(const QString& type, const QVariant& message)
 
     // topup
     else if (type == "user-topup-success") {
-        int duration = message.toInt();
-        emit topupSuccess(duration);
+        emit topupSuccess(message.toInt());
     }
     else if (type == "user-topup-failed") {
         emit topupFailed(message.toString());
