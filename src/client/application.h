@@ -26,7 +26,7 @@ public:
 
     bool isConnected() const;
     void sendSessionStop();
-    void sendGuestLogin(const QString& code);
+    void sendGuestLogin(const QString& username, const QString& voucherCode);
     void sendMemberLogin(const QString& username, const QString& password, const QString& code);
     void sendTopup(const QString& code);
 

@@ -5,6 +5,7 @@
 
 #include <QTimer>
 #include <QAction>
+#include <QRegExpValidator>
 
 MemberLoginWidget::MemberLoginWidget(QWidget *parent)
     : ScreenLockerContentWidget(parent)
@@ -15,13 +16,15 @@ MemberLoginWidget::MemberLoginWidget(QWidget *parent)
 
     loginTimer->setSingleShot(true);
 
-    ui->usernameEdit->setClearButtonEnabled(true);
-    ui->passwordEdit->setClearButtonEnabled(true);
-    ui->voucherCodeEdit->setClearButtonEnabled(true);
-
     QAction* rejectAction = new QAction(this);
     rejectAction->setShortcut(QKeySequence("Esc"));
     addAction(rejectAction);
+
+    QRegExpValidator *usernameValidator = new QRegExpValidator(QRegExp("^[a-zA-Z]+[a-zA-Z0-9_]*$"), this);
+    ui->usernameEdit->setValidator(usernameValidator);
+
+    QRegExpValidator *voucherValidator = new QRegExpValidator(QRegExp("^[a-zA-Z0-9]{6}$"), this);
+    ui->voucherCodeEdit->setValidator(voucherValidator);
 
     connect(ui->okButton, SIGNAL(clicked()), SLOT(accept()));
     connect(ui->usernameEdit, SIGNAL(returnPressed()), SLOT(accept()));

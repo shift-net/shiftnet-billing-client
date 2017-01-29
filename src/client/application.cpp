@@ -57,10 +57,10 @@ void Application::sendInit()
         connection()->send("init", _screenLocker && _screenLocker->isVisible() ? "ready" : "maintenance");
 }
 
-void Application::sendGuestLogin(const QString& code)
+void Application::sendGuestLogin(const QString& username, const QString& voucherCode)
 {
     if (connection()->isConnected())
-        connection()->send("guest-login", code);
+        connection()->send("guest-login", QVariantList({ username, voucherCode }));
 }
 
 void Application::sendMemberLogin(const QString& username, const QString& password, const QString& code)

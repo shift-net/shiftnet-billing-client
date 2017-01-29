@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>273</width>
-    <height>138</height>
+    <height>193</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -44,10 +44,13 @@
    <item>
     <widget class="QFrame" name="headerFrame">
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="spacing">
@@ -67,6 +70,9 @@
       </property>
       <item>
        <widget class="QLabel" name="titleLabel">
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
         <property name="text">
          <string>Masuk  ShiftNet</string>
         </property>
@@ -97,6 +103,26 @@
        <number>0</number>
       </property>
       <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>&amp;Nama Pengguna</string>
+        </property>
+        <property name="buddy">
+         <cstring>usernameEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="usernameEdit">
+        <property name="maxLength">
+         <number>40</number>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
          <string>Kode Voucher</string>
@@ -113,6 +139,9 @@
         </property>
         <property name="echoMode">
          <enum>QLineEdit::Password</enum>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -165,6 +194,7 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>usernameEdit</tabstop>
   <tabstop>codeEdit</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>commandLinkButton</tabstop>
