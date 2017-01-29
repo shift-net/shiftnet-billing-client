@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>204</width>
-    <height>59</height>
+    <height>63</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -44,10 +44,13 @@
    <item>
     <widget class="QFrame" name="headerFrame">
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="spacing">
@@ -67,6 +70,9 @@
       </property>
       <item>
        <widget class="QLabel" name="titleLabel">
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
         <property name="text">
          <string>Masuk Administrator</string>
         </property>
