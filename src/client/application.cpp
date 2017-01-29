@@ -209,6 +209,16 @@ void Application::restartSystem()
 void Application::setScreenLockerOnTop()
 {
     if (_screenLocker && _screenLocker->isVisible()) {
-        SetWindowPos((HWND)_screenLocker->winId(), HWND_TOPMOST, 0, 0, 0, 0, SWP_DRAWFRAME | SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+        HWND hScreenLocker = (HWND)_screenLocker->winId();
+        HWND hCurWnd = ::GetForegroundWindow();
+        DWORD dwMyID = ::GetCurrentThreadId();
+        DWORD dwCurID = ::GetWindowThreadProcessId(hCurWnd, NULL);
+        ::AttachThreadInput(dwCurID, dwMyID, TRUE);
+        ::SetWindowPos(hScreenLocker, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+        ::SetWindowPos(hScreenLocker, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+        ::SetForegroundWindow(hScreenLocker);
+        ::AttachThreadInput(dwCurID, dwMyID, FALSE);
+        ::SetFocus(hScreenLocker);
+        ::SetActiveWindow(hScreenLocker);
     }
 }
