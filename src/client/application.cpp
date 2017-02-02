@@ -5,6 +5,7 @@
 #include "billingdialog.h"
 #include "maintenancedialog.h"
 
+#include <QMediaPlayer>
 #include <QTimer>
 #include <windows.h>
 
@@ -115,6 +116,13 @@ void Application::processMessage(const QString& type, const QVariant& message)
         showBillingDialog();
     }
     else if (type == "session-sync") {
+        if (message.toInt() == 10) {
+            QMediaPlayer* mediaPlayer = new QMediaPlayer(this);
+            mediaPlayer->setMedia(QUrl::fromLocalFile("notification-10-min.mp3"));
+            mediaPlayer->setVolume(80);
+            mediaPlayer->play();
+            connect(mediaPlayer, SIGNAL(stateChanged(QMediaPlayer::State)), SLOT(onMediaPlayerStateChanged()));
+        }
         setProperty("duration", message);
         emit durationUpdated();
     }
@@ -223,4 +231,11 @@ void Application::setScreenLockerOnTop()
         ::SetFocus(hScreenLocker);
         ::SetActiveWindow(hScreenLocker);
     }
+}
+
+void Application::onMediaPlayerStateChanged()
+{
+    QMediaPlayer* mediaPlayer = qobject_cast<QMediaPlayer*>(sender());
+    if (mediaPlayer->state() == QMediaPlayer::StoppedState)
+        mediaPlayer->deleteLater();
 }

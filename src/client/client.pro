@@ -1,7 +1,7 @@
 TARGET = ShiftNetBillingClient
 TEMPLATE = app
 DESTDIR = $$PWD/../../dist
-QT = core gui widgets websockets
+QT = core gui widgets websockets multimedia
 RC_FILE = client.rc
 
 SOURCES += \

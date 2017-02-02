@@ -61,6 +61,7 @@ private slots:
 
     void processMessage(const QString& type, const QVariant& data);
     void setScreenLockerOnTop();
+    void onMediaPlayerStateChanged();
 
 private:
     QSettings _settings;
