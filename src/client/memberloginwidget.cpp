@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QAction>
 #include <QRegExpValidator>
+#include <QCryptographicHash>
 
 MemberLoginWidget::MemberLoginWidget(QWidget *parent)
     : ScreenLockerContentWidget(parent)
@@ -64,7 +65,8 @@ void MemberLoginWidget::accept()
 
     setEnabled(false);
 
-    qApp->sendMemberLogin(username, password, ui->voucherCodeEdit->text());
+
+    qApp->sendMemberLogin(username, QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha1).toHex(), ui->voucherCodeEdit->text());
 }
 
 void MemberLoginWidget::onLoginFailed(const QString& field, const QString& message)
