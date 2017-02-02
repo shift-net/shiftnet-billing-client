@@ -88,8 +88,14 @@ void BillingDialog::showTopupDialog()
 void BillingDialog::onTimeout()
 {
     setEnabled(true);
-    // TODO: Message box harus pake timer
-    QMessageBox::critical(0, "Kesalahan", "Gagal menutup sesi karena batas waktu permintaan ke server telah habis.");
+
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Kesalahan");
+    msgBox.setIconPixmap(QIcon(":/fa-info-black.png").pixmap(QSize(32, 32)));
+    msgBox.setText(QString("Gagal menutup sesi karena batas waktu permintaan ke server telah habis."));
+    msgBox.addButton(QMessageBox::Ok);
+    QTimer::singleShot(5000, &msgBox, SLOT(accept()));
+    msgBox.exec();
 }
 
 void BillingDialog::onSessionStopped()
