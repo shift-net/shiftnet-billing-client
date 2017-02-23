@@ -141,7 +141,7 @@ void Application::processMessage(const QString& type, const QVariant& message)
         restartSystem();
     }
     else if (type == "maintenance-remote-stop") {
-        maintenanceStoppedRemotely();
+        emit maintenanceStoppedRemotely();
     }
 
     // topup
